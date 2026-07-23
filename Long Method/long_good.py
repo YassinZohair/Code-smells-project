@@ -66,11 +66,7 @@ def classification(stats):
         day_type = "Hot"
     return day_type
 
-def print_report(readings,station_name):
-    if validate_temp(readings)==True:
-        stats=compute_stat(readings)
-        alerts=find_alerts(stats)
-        day_type=classification(stats)
+def print_report(readings,station_name,stats,day_type,alerts):
         print(f"=== Daily Weather Report: {station_name} ===")
         print(f"Readings recorded: {len(readings)}")
         print(f"Average temperature: {stats['avg_temp']:.1f}C")
@@ -85,9 +81,15 @@ def print_report(readings,station_name):
         else:
             print("No alerts today.")
         return stats
-    else:
-        print('validation error')
-        return
     
 if __name__ == "__main__":
-    print_report(readings,'cairo central station')
+    if validate_temp(readings)==True:
+        stats=compute_stat(readings)
+        alerts=find_alerts(stats)
+        day_type=classification(stats)
+        print_report(readings,'cairo central station',stats,day_type,alerts)
+    else:
+        print('validation error')
+    
+
+# TODO: make the functions calls in the pipeline and the print report fucntion to only print 

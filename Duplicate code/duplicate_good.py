@@ -60,3 +60,4 @@ if __name__ == "__main__":
     premium_total=print_premium_report()
     vip_total=print_vip_report()
     print_summary([basic_total,vip_total,premium_total])
+ 
